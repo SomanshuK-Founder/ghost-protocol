@@ -1,0 +1,7 @@
+SYNTHETIC — SHAREABLE PROJECT SCHEDULE
+Resource ID: doc_schedule
+2026-10-13 | Confirm API contract ownership | Maya | Open
+2026-10-14 | Submit weekly project summary | Maya | Open
+2026-10-15 | Review search report | Ishan | Open
+2026-10-16 | Run MVP demo rehearsal | All | Open
+2026-10-17 | Prepare release notes | Leah | Open

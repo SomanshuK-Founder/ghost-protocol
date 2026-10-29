@@ -1,0 +1,205 @@
+{
+  "image": {
+    "Id": "sha256:861f2f69369a66bb8862bc77886e003a5075012224a0cfde56ab8794d941def3",
+    "RepoDigests": [
+      "ghost-openshell-probe@sha256:861f2f69369a66bb8862bc77886e003a5075012224a0cfde56ab8794d941def3"
+    ],
+    "Architecture": "amd64",
+    "Os": "linux",
+    "Size": 82257,
+    "Descriptor": {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:861f2f69369a66bb8862bc77886e003a5075012224a0cfde56ab8794d941def3",
+      "size": 665,
+      "annotations": {
+        "config.digest": "sha256:811cd7a811de4589da9bb01720be9a0c65620d169fb333e29ddd2416ae3cfadb"
+      }
+    }
+  },
+  "config": {
+    "User": "1000:1000",
+    "WorkingDir": "/work",
+    "Entrypoint": [
+      "/opt/ghost-probe/probe"
+    ],
+    "Cmd": [
+      "identity"
+    ],
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    ],
+    "ExposedPorts": null,
+    "Volumes": null,
+    "Healthcheck": null,
+    "OnBuild": null,
+    "Labels": {
+      "org.ghost-protocol.purpose": "synthetic-openshell-security-probe"
+    }
+  },
+  "layers": [
+    "sha256:fa362eaa334c0c500521371c0f49f2506592c35f5c9ab7beb16a7b18299b54d1",
+    "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+  ],
+  "archive_members_verified": 15,
+  "build": {
+    "status": "PREPARED_NOT_EXECUTED",
+    "platform": "linux/amd64",
+    "base": "scratch (empty filesystem, no registry image or pull)",
+    "probe_sha256": "e1ea5b0df04e79fc20213b8c173652cd8fd8364ecbf8719efe038966b2f1074c",
+    "source_sha256": "8000ce2321fc8b89dca281c5d8b66bd1d3bf594d8d44690db80375775e9d3c8f",
+    "rootfs_sha256": "4921bca7072d1da31bfd030440d46803dce075ec7a05f593956011488d167ea0",
+    "dockerfile_sha256": "dcb951e6bae5fbe70c658a7b46398a71838bf779825b5430725e82342ec718b7",
+    "tools": {
+      "as": "GNU assembler (GNU Binutils for Ubuntu) 2.42",
+      "ld": "GNU ld (GNU Binutils for Ubuntu) 2.42"
+    },
+    "files": [
+      {
+        "path": "/denied",
+        "type": "directory",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": "0o755",
+        "size": 0,
+        "sha256": null
+      },
+      {
+        "path": "/denied/ghost.env",
+        "type": "file",
+        "uid": 0,
+        "gid": 0,
+        "mode": "0o444",
+        "size": 34,
+        "sha256": "a956c10b36687919f84b35d3b57742f042d8b7535ec28f0ed16fb0c456900e4a"
+      },
+      {
+        "path": "/denied/home",
+        "type": "directory",
+        "uid": 0,
+        "gid": 0,
+        "mode": "0o755",
+        "size": 0,
+        "sha256": null
+      },
+      {
+        "path": "/denied/home/.ssh",
+        "type": "directory",
+        "uid": 0,
+        "gid": 0,
+        "mode": "0o755",
+        "size": 0,
+        "sha256": null
+      },
+      {
+        "path": "/denied/home/.ssh/canary",
+        "type": "file",
+        "uid": 0,
+        "gid": 0,
+        "mode": "0o444",
+        "size": 32,
+        "sha256": "3e25c2eace95e02ca9ba8e1134ef4b1f8671ff9a1347e0ed2cb4d7960d97e80d"
+      },
+      {
+        "path": "/dev",
+        "type": "directory",
+        "uid": 0,
+        "gid": 0,
+        "mode": "0o755",
+        "size": 0,
+        "sha256": null
+      },
+      {
+        "path": "/etc",
+        "type": "directory",
+        "uid": 0,
+        "gid": 0,
+        "mode": "0o755",
+        "size": 0,
+        "sha256": null
+      },
+      {
+        "path": "/etc/group",
+        "type": "file",
+        "uid": 0,
+        "gid": 0,
+        "mode": "0o444",
+        "size": 14,
+        "sha256": "68fb825b42169ceac6664ab0af93923871fe9369d0d39c150ebf9fe6b3d15ea9"
+      },
+      {
+        "path": "/etc/passwd",
+        "type": "file",
+        "uid": 0,
+        "gid": 0,
+        "mode": "0o444",
+        "size": 53,
+        "sha256": "cba109ac7f5a5c11e1c0280670dabfb12cc6836239768f2d979ad5cb205c3579"
+      },
+      {
+        "path": "/opt",
+        "type": "directory",
+        "uid": 0,
+        "gid": 0,
+        "mode": "0o755",
+        "size": 0,
+        "sha256": null
+      },
+      {
+        "path": "/opt/ghost-probe",
+        "type": "directory",
+        "uid": 0,
+        "gid": 0,
+        "mode": "0o755",
+        "size": 0,
+        "sha256": null
+      },
+      {
+        "path": "/opt/ghost-probe/probe",
+        "type": "file",
+        "uid": 0,
+        "gid": 0,
+        "mode": "0o555",
+        "size": 11120,
+        "sha256": "e1ea5b0df04e79fc20213b8c173652cd8fd8364ecbf8719efe038966b2f1074c"
+      },
+      {
+        "path": "/tmp",
+        "type": "directory",
+        "uid": 0,
+        "gid": 0,
+        "mode": "0o755",
+        "size": 0,
+        "sha256": null
+      },
+      {
+        "path": "/tmp/ghost-probe",
+        "type": "directory",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": "0o700",
+        "size": 0,
+        "sha256": null
+      },
+      {
+        "path": "/work",
+        "type": "directory",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": "0o700",
+        "size": 0,
+        "sha256": null
+      }
+    ],
+    "device_note": "/dev/null is supplied by the container runtime, not an archive device",
+    "functional_tests": "NOT RUN: workload execution requires OpenShell approval"
+  },
+  "history": [
+    "{\"Comment\":\"buildkit.dockerfile.v0\",\"CreatedAt\":\"2026-10-26T16:57:50Z\",\"CreatedBy\":\"LABEL org.ghost-protocol.purpose=synthetic-openshell-security-probe\",\"CreatedSince\":\"About a minute ago\",\"ID\":\"sha256:861f2f69369a66bb8862bc77886e003a5075012224a0cfde56ab8794d941def3\",\"Size\":\"0B\"}",
+    "{\"Comment\":\"buildkit.dockerfile.v0\",\"CreatedAt\":\"2026-10-26T16:57:50Z\",\"CreatedBy\":\"CMD [\\\"identity\\\"]\",\"CreatedSince\":\"About a minute ago\",\"ID\":\"\\u003cmissing\\u003e\",\"Size\":\"0B\"}",
+    "{\"Comment\":\"buildkit.dockerfile.v0\",\"CreatedAt\":\"2026-10-26T16:57:50Z\",\"CreatedBy\":\"ENTRYPOINT [\\\"/opt/ghost-probe/probe\\\"]\",\"CreatedSince\":\"About a minute ago\",\"ID\":\"\\u003cmissing\\u003e\",\"Size\":\"0B\"}",
+    "{\"Comment\":\"buildkit.dockerfile.v0\",\"CreatedAt\":\"2026-10-26T16:57:50Z\",\"CreatedBy\":\"WORKDIR /work\",\"CreatedSince\":\"About a minute ago\",\"ID\":\"\\u003cmissing\\u003e\",\"Size\":\"4.1kB\"}",
+    "{\"Comment\":\"buildkit.dockerfile.v0\",\"CreatedAt\":\"2026-10-26T16:57:50Z\",\"CreatedBy\":\"USER 1000:1000\",\"CreatedSince\":\"About a minute ago\",\"ID\":\"\\u003cmissing\\u003e\",\"Size\":\"0B\"}",
+    "{\"Comment\":\"buildkit.dockerfile.v0\",\"CreatedAt\":\"2026-10-26T16:57:50Z\",\"CreatedBy\":\"ADD rootfs.tar / # buildkit\",\"CreatedSince\":\"About a minute ago\",\"ID\":\"\\u003cmissing\\u003e\",\"Size\":\"73.7kB\"}"
+  ],
+  "workload_executed": false
+}

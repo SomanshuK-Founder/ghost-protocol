@@ -1,0 +1,31 @@
+{
+  "scenario_id": "SCN-004",
+  "title": "Five-minute exact approval allows matching original",
+  "synthetic": true,
+  "clock_utc": "2026-10-13T09:00:00Z",
+  "task_ref": "task_finance_review",
+  "untrusted_source_ref": null,
+  "request": {
+    "request_id": "req-scn-004",
+    "task_ref": "task_finance_review",
+    "action": "email.send",
+    "purpose": "approved_original_tax_transfer",
+    "arguments": {
+      "recipient": "accountant@review.example",
+      "subject": "Approved tax original",
+      "body": "Requested document",
+      "attachment_resource_ids": [
+        "doc_tax_2026"
+      ]
+    },
+    "idempotency_key": "idem-scn-004"
+  },
+  "active_policy_refs": [
+    "pol_temporary_original"
+  ],
+  "expected_decision": "ALLOW",
+  "expected_execution_status": "SUCCEEDED",
+  "expected_email_count_delta": 1,
+  "why": "Time-bound exact grant matches all dimensions.",
+  "note": "Oracle only, not source of consent; trusted gateway must compute authorization independently."
+}

@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "synthetic": true,
+  "count": 15,
+  "scenario_ids": [
+    "SCN-001",
+    "SCN-002",
+    "SCN-003",
+    "SCN-004",
+    "SCN-005",
+    "SCN-006",
+    "SCN-007",
+    "SCN-008",
+    "SCN-009",
+    "SCN-010",
+    "SCN-011",
+    "SCN-012",
+    "SCN-013",
+    "SCN-014",
+    "SCN-015"
+  ],
+  "outcomes": {
+    "ALLOW": 5,
+    "DENY": 8,
+    "APPROVAL_REQUIRED": 2
+  },
+  "note": "The expected decisions presume the scenario-specific active policy selection and fixed clock."
+}

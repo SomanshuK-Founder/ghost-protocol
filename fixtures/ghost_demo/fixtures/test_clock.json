@@ -1,0 +1,4 @@
+{
+  "frozen_time_utc": "2026-10-13T09:00:00Z",
+  "note": "Tests must explicitly inject this clock; never depend on current wall-clock time."
+}

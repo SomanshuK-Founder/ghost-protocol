@@ -1,0 +1,113 @@
+import type { ApprovalReview } from "../src/lib/approval-review.ts";
+import type { Evidence } from "../src/lib/presentation.ts";
+export const now = Date.parse("2026-10-29T10:00:00Z");
+export function review(): ApprovalReview {
+  const provenance = {
+    environment: "OFFLINE_DEMO",
+    planning_source: "MOCK_MODEL",
+    execution_mode: null,
+    effect: "NONE",
+    evidence: "OBSERVED",
+  } as const;
+  const created = "2026-10-29T09:59:00Z",
+    expires = "2026-10-29T10:09:00Z";
+  return {
+    approval: {
+      approval_ref: "approval_synthetic",
+      task_ref: "task_synthetic",
+      operation_ref: "op_synthetic",
+      request_id: "request_synthetic",
+      state: "PENDING",
+      expires_at: expires,
+      action: "files.read",
+      purpose: "summarize_document",
+      arguments: { resource_id: "doc_synthetic" },
+      resource_versions: [
+        {
+          resource_id: "doc_synthetic",
+          version_ref: "version_synthetic",
+          classification: "PRIVATE_ORIGINAL",
+        },
+      ],
+      binding_digest: "a".repeat(64),
+      consumed: false,
+      in_flight: false,
+      provenance,
+    },
+    task: {
+      task_ref: "task_synthetic",
+      profile_id: "document_simulation_v1",
+      authority_state: "OPEN",
+      created_at: created,
+      expires_at: expires,
+      planning_state: "FINISHED",
+      approval_ref: "approval_synthetic",
+      workflow_phase: "PAUSED",
+      operation_state: "PENDING_APPROVAL",
+      provenance,
+      purpose: "summarize_document",
+      resource_ids: ["doc_synthetic"],
+      allowed_action: "files.read",
+      authorization_version: 0,
+      in_flight: false,
+      reconciliation_required: false,
+    },
+    operation: {
+      operation_ref: "op_synthetic",
+      task_ref: "task_synthetic",
+      request_id: "request_synthetic",
+      action: "files.read",
+      state: "PENDING_APPROVAL",
+      decision: "APPROVAL_REQUIRED",
+      execution_status: "NOT_EXECUTED",
+      reason_code: "CONSENT_REVIEW_REQUIRED",
+      approval_ref: "approval_synthetic",
+      approval_state: "PENDING",
+      attempt_ref: null,
+      audit_event_ref: "event_synthetic",
+      revision: 1,
+      created_at: created,
+      updated_at: created,
+      reconciliation_required: false,
+      provenance,
+    },
+    workflow: {
+      task_ref: "task_synthetic",
+      binding_ref: "binding_synthetic",
+      operation_ref: "op_synthetic",
+      approval_ref: "approval_synthetic",
+      phase: "PAUSED",
+      authorization_version: 0,
+      expires_at: expires,
+      continuation_available: false,
+      reconciliation_required: false,
+      provenance,
+    },
+  };
+}
+export function evidence(r = review()): Evidence {
+  return {
+    task: r.task,
+    approval: r.approval,
+    workflow: r.workflow,
+    operations: [r.operation],
+    timeline: [],
+    planning: {
+      task_ref: r.task.task_ref,
+      planning_ref: "plan_synthetic",
+      state: "FINISHED",
+      outcome: "PLAN_READY",
+      intent: "summarize_document",
+      proposed_actions: ["files.read"],
+      authorization_decision: "APPROVAL_REQUIRED",
+      reason_code: "CONSENT_REVIEW_REQUIRED",
+      request_id: r.approval.request_id,
+      operation_ref: r.operation.operation_ref,
+      approval_ref: r.approval.approval_ref,
+      error_code: null,
+      started_at: r.task.created_at,
+      finished_at: r.task.created_at,
+      provenance: r.task.provenance,
+    },
+  };
+}

@@ -1,0 +1,84 @@
+{
+  "synthetic": true,
+  "clock_ref": "fixtures/test_clock.json",
+  "policies": [
+    {
+      "policy_ref": "pol_read_project",
+      "task_ref": "task_project_summary",
+      "action": "files.read",
+      "resource_id": "doc_project_report",
+      "recipient": null,
+      "purpose": "project_summary",
+      "starts_at": "2026-10-12T00:00:00Z",
+      "expires_at": "2026-10-20T00:00:00Z",
+      "status": "ACTIVE"
+    },
+    {
+      "policy_ref": "pol_read_tax",
+      "task_ref": "task_finance_review",
+      "action": "files.read",
+      "resource_id": "doc_tax_2026",
+      "recipient": null,
+      "purpose": "private_tax_summary",
+      "starts_at": "2026-10-12T00:00:00Z",
+      "expires_at": "2026-10-20T00:00:00Z",
+      "status": "ACTIVE"
+    },
+    {
+      "policy_ref": "pol_send_project",
+      "task_ref": "task_project_summary",
+      "action": "email.send",
+      "resource_id": null,
+      "recipient": "teammate@project.example",
+      "purpose": "project_summary",
+      "starts_at": "2026-10-12T00:00:00Z",
+      "expires_at": "2026-10-20T00:00:00Z",
+      "status": "ACTIVE",
+      "max_attachment_ids": [
+        "doc_project_report"
+      ]
+    },
+    {
+      "policy_ref": "pol_send_tax_summary",
+      "task_ref": "task_finance_review",
+      "action": "email.send",
+      "resource_id": null,
+      "recipient": "teammate@project.example",
+      "purpose": "private_tax_summary",
+      "starts_at": "2026-10-12T00:00:00Z",
+      "expires_at": "2026-10-20T00:00:00Z",
+      "status": "ACTIVE",
+      "max_attachment_ids": []
+    },
+    {
+      "policy_ref": "pol_temporary_original",
+      "task_ref": "task_finance_review",
+      "action": "email.send",
+      "resource_id": "doc_tax_2026",
+      "recipient": "accountant@review.example",
+      "purpose": "approved_original_tax_transfer",
+      "starts_at": "2026-10-13T08:58:00Z",
+      "expires_at": "2026-10-13T09:03:00Z",
+      "status": "ACTIVE",
+      "max_attachment_ids": [
+        "doc_tax_2026"
+      ]
+    },
+    {
+      "policy_ref": "pol_revoked",
+      "task_ref": "task_finance_review",
+      "action": "email.send",
+      "resource_id": "doc_tax_2026",
+      "recipient": "accountant@review.example",
+      "purpose": "approved_original_tax_transfer",
+      "starts_at": "2026-10-13T08:58:00Z",
+      "expires_at": "2026-10-13T09:03:00Z",
+      "status": "REVOKED",
+      "revoked_at": "2026-10-13T08:59:00Z",
+      "max_attachment_ids": [
+        "doc_tax_2026"
+      ]
+    }
+  ],
+  "warning": "For scenario-specific policy selection; do not load contradictory policies simultaneously without scenario filtering."
+}

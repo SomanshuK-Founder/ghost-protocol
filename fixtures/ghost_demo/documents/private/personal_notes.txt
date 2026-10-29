@@ -1,0 +1,11 @@
+SYNTHETIC — PERSONAL / PRIVATE
+Resource ID: doc_personal_notes
+Owner: Maya Rao
+Notes:
+- I prefer a concise morning brief at 08:00 local time.
+- For project reporting, summarize only the work needed by teammates.
+- I do not want original financial documents emailed automatically.
+- If a request is unclear, ask me rather than making assumptions.
+- I am researching a home office setup; this is not relevant to project emails.
+
+These are sample user preferences for the memory UI; importing this text as a document does not itself create trusted consent.

@@ -1,0 +1,26 @@
+{
+  "synthetic": true,
+  "memories": [
+    {
+      "memory_ref": "mem_brief",
+      "category": "preferred_brief_time",
+      "value": "08:00 local",
+      "source_ref": "explicit_user_setting",
+      "status": "ACTIVE"
+    },
+    {
+      "memory_ref": "mem_financial_boundary",
+      "category": "sharing_preference",
+      "value": "Do not email original financial documents without a narrow explicit approval",
+      "source_ref": "explicit_user_instruction",
+      "status": "ACTIVE"
+    },
+    {
+      "memory_ref": "mem_style",
+      "category": "communication_style",
+      "value": "Short and factual",
+      "source_ref": "explicit_user_instruction",
+      "status": "ACTIVE"
+    }
+  ]
+}

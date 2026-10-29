@@ -1,0 +1,41 @@
+{
+  "synthetic": true,
+  "resources": [
+    {
+      "resource_id": "doc_tax_2026",
+      "relative_path": "documents/private/tax_statement_2026.txt",
+      "classification": "restricted_financial",
+      "owner_ref": "usr_maya"
+    },
+    {
+      "resource_id": "doc_bank_oct",
+      "relative_path": "documents/private/bank_statement_demo.txt",
+      "classification": "restricted_financial",
+      "owner_ref": "usr_maya"
+    },
+    {
+      "resource_id": "doc_personal_notes",
+      "relative_path": "documents/private/personal_notes.txt",
+      "classification": "private",
+      "owner_ref": "usr_maya"
+    },
+    {
+      "resource_id": "doc_project_report",
+      "relative_path": "documents/shareable/project_report.txt",
+      "classification": "shareable",
+      "owner_ref": "usr_maya"
+    },
+    {
+      "resource_id": "doc_meeting_oct",
+      "relative_path": "documents/shareable/meeting_summary.txt",
+      "classification": "shareable",
+      "owner_ref": "usr_maya"
+    },
+    {
+      "resource_id": "doc_schedule",
+      "relative_path": "documents/shareable/project_schedule.txt",
+      "classification": "shareable",
+      "owner_ref": "usr_maya"
+    }
+  ]
+}

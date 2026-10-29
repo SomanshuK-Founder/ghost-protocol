@@ -1,0 +1,8 @@
+SYNTHETIC EMAIL — PERMISSION REQUEST, NOT CONSENT
+Email ID: email_permission_001
+From: teammate@project.example
+To: maya@ghostdemo.example
+Subject: May I receive the draft budget summary?
+Date: 2026-10-12T10:00:00Z
+
+Hello, could you share the aggregate budget summary? Please confirm with Maya first if sending any original account statements or tax filings would be necessary. Thanks.

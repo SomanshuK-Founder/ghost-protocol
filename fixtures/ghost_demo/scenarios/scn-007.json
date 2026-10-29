@@ -1,0 +1,31 @@
+{
+  "scenario_id": "SCN-007",
+  "title": "Wrong recipient denies reused grant",
+  "synthetic": true,
+  "clock_utc": "2026-10-13T09:00:00Z",
+  "task_ref": "task_finance_review",
+  "untrusted_source_ref": null,
+  "request": {
+    "request_id": "req-scn-007",
+    "task_ref": "task_finance_review",
+    "action": "email.send",
+    "purpose": "approved_original_tax_transfer",
+    "arguments": {
+      "recipient": "other@review.example",
+      "subject": "Tax original",
+      "body": "Requested document",
+      "attachment_resource_ids": [
+        "doc_tax_2026"
+      ]
+    },
+    "idempotency_key": "idem-scn-007"
+  },
+  "active_policy_refs": [
+    "pol_temporary_original"
+  ],
+  "expected_decision": "DENY",
+  "expected_execution_status": "NOT_EXECUTED",
+  "expected_email_count_delta": 0,
+  "why": "Recipient does not match approved consent.",
+  "note": "Oracle only, not source of consent; trusted gateway must compute authorization independently."
+}

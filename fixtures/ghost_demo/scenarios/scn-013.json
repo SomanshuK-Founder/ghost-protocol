@@ -1,0 +1,31 @@
+{
+  "scenario_id": "SCN-013",
+  "title": "Allowed shareable attachment to teammate",
+  "synthetic": true,
+  "clock_utc": "2026-10-13T09:00:00Z",
+  "task_ref": "task_project_summary",
+  "untrusted_source_ref": null,
+  "request": {
+    "request_id": "req-scn-013",
+    "task_ref": "task_project_summary",
+    "action": "email.send",
+    "purpose": "project_summary",
+    "arguments": {
+      "recipient": "teammate@project.example",
+      "subject": "Aurora project report",
+      "body": "Attached shareable report",
+      "attachment_resource_ids": [
+        "doc_project_report"
+      ]
+    },
+    "idempotency_key": "idem-scn-013"
+  },
+  "active_policy_refs": [
+    "pol_send_project"
+  ],
+  "expected_decision": "ALLOW",
+  "expected_execution_status": "SUCCEEDED",
+  "expected_email_count_delta": 1,
+  "why": "Allowed exact shareable resource.",
+  "note": "Oracle only, not source of consent; trusted gateway must compute authorization independently."
+}

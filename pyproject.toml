@@ -1,0 +1,23 @@
+[project]
+name = "ghost-protocol-member-b"
+version = "0.0.0"
+description = "Provisional Member B Phase B0 contracts and test-only gateway"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2,<3", "openai>=2,<3", "jsonschema>=4.23,<5", "langgraph==1.2.15", "httpx>=0.28,<1", "langgraph-checkpoint-sqlite==3.1.2"]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests/agent", "backend/tests/evaluations", "backend/tests/live"]
+pythonpath = ["backend"]
+addopts = "--strict-config --strict-markers"
+markers = ["live: paid Nebius validation; opt-in only, never part of offline acceptance"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["backend"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]

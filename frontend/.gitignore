@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+test-results/
+playwright-report/
+*.tsbuildinfo
+__pycache__/
+.env*
+!.env.example

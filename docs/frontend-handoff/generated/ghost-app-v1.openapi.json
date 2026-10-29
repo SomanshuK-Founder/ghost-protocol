@@ -1,0 +1,5697 @@
+{
+  "components": {
+    "schemas": {
+      "AnonymousSession": {
+        "additionalProperties": false,
+        "properties": {
+          "absolute_expires_at": {
+            "title": "Absolute Expires At",
+            "type": "null"
+          },
+          "authenticated": {
+            "const": false,
+            "default": false,
+            "title": "Authenticated",
+            "type": "boolean"
+          },
+          "csrf_token": {
+            "pattern": "^[A-Za-z0-9_-]{43}$",
+            "title": "Csrf Token",
+            "type": "string"
+          },
+          "idle_expires_at": {
+            "title": "Idle Expires At",
+            "type": "null"
+          },
+          "mode": {
+            "const": "LOCAL_DEMO",
+            "default": "LOCAL_DEMO",
+            "title": "Mode",
+            "type": "string"
+          },
+          "owner": {
+            "title": "Owner",
+            "type": "null"
+          }
+        },
+        "required": [
+          "authenticated",
+          "mode",
+          "csrf_token",
+          "owner",
+          "idle_expires_at",
+          "absolute_expires_at"
+        ],
+        "title": "AnonymousSession",
+        "type": "object"
+      },
+      "AppErrorDetail": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "anyOf": [
+              {
+                "enum": [
+                  "AUTH_NOT_CONFIGURED",
+                  "AUTH_RATE_LIMITED",
+                  "LOGIN_FAILED",
+                  "SESSION_REQUIRED",
+                  "SESSION_EXPIRED",
+                  "CSRF_INVALID",
+                  "ORIGIN_FORBIDDEN",
+                  "CREDENTIAL_HEADER_FORBIDDEN",
+                  "INVALID_REQUEST",
+                  "MALFORMED_JSON",
+                  "DUPLICATE_JSON_FIELD",
+                  "PAYLOAD_TOO_LARGE",
+                  "UNSUPPORTED_MEDIA_TYPE",
+                  "UNEXPECTED_IDEMPOTENCY_KEY",
+                  "NOT_FOUND"
+                ],
+                "type": "string"
+              },
+              {
+                "enum": [
+                  "INVALID_CURSOR",
+                  "IDEMPOTENCY_KEY_REQUIRED",
+                  "IDEMPOTENCY_KEY_INVALID",
+                  "IDEMPOTENCY_CONFLICT",
+                  "COMMAND_IN_PROGRESS",
+                  "COMMAND_UNCERTAIN",
+                  "TASK_NOT_ACTIVE",
+                  "PLANNING_ALREADY_STARTED",
+                  "CAPACITY_EXCEEDED",
+                  "INTERNAL_ERROR",
+                  "BACKEND_UNAVAILABLE",
+                  "HOST_UNAVAILABLE",
+                  "COMMAND_TIMEOUT",
+                  "APPROVAL_STATE_CONFLICT",
+                  "WORKFLOW_NOT_READY",
+                  "WORKFLOW_DENIED",
+                  "RECONCILIATION_REQUIRED"
+                ],
+                "type": "string"
+              }
+            ],
+            "title": "Code"
+          },
+          "command_ref": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Command Ref"
+          },
+          "command_uncertain": {
+            "default": false,
+            "title": "Command Uncertain",
+            "type": "boolean"
+          },
+          "correlation_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Correlation Ref",
+            "type": "string"
+          },
+          "execution_uncertain": {
+            "default": false,
+            "title": "Execution Uncertain",
+            "type": "boolean"
+          },
+          "message": {
+            "const": "Request cannot be processed",
+            "default": "Request cannot be processed",
+            "title": "Message",
+            "type": "string"
+          },
+          "reason_code": {
+            "title": "Reason Code",
+            "type": "null"
+          },
+          "reconciliation_required": {
+            "default": false,
+            "title": "Reconciliation Required",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "correlation_ref",
+          "command_ref",
+          "command_uncertain",
+          "execution_uncertain",
+          "reconciliation_required",
+          "reason_code"
+        ],
+        "title": "AppErrorDetail",
+        "type": "object"
+      },
+      "AppFailure": {
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "ghost-app-v1",
+            "default": "ghost-app-v1",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "error": {
+            "$ref": "#/components/schemas/AppErrorDetail"
+          }
+        },
+        "required": [
+          "api_version",
+          "error"
+        ],
+        "title": "AppFailure",
+        "type": "object"
+      },
+      "AppPage_DocumentMetadata_": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentMetadata"
+            },
+            "maxItems": 50,
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "snapshot_at": {
+            "format": "date-time",
+            "title": "Snapshot At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "snapshot_at"
+        ],
+        "title": "AppPage[DocumentMetadata]",
+        "type": "object"
+      },
+      "AppPage_TimelineItem_": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/TimelineItem"
+            },
+            "maxItems": 50,
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "snapshot_at": {
+            "format": "date-time",
+            "title": "Snapshot At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "snapshot_at"
+        ],
+        "title": "AppPage[TimelineItem]",
+        "type": "object"
+      },
+      "AppSuccess_AppPage_DocumentMetadata__": {
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "ghost-app-v1",
+            "default": "ghost-app-v1",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AppPage_DocumentMetadata_"
+          },
+          "replayed": {
+            "default": false,
+            "title": "Replayed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "api_version",
+          "data",
+          "replayed"
+        ],
+        "title": "AppSuccess[AppPage[DocumentMetadata]]",
+        "type": "object"
+      },
+      "AppSuccess_AppPage_TimelineItem__": {
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "ghost-app-v1",
+            "default": "ghost-app-v1",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AppPage_TimelineItem_"
+          },
+          "replayed": {
+            "default": false,
+            "title": "Replayed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "api_version",
+          "data",
+          "replayed"
+        ],
+        "title": "AppSuccess[AppPage[TimelineItem]]",
+        "type": "object"
+      },
+      "AppSuccess_ApprovalDetail_": {
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "ghost-app-v1",
+            "default": "ghost-app-v1",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ApprovalDetail"
+          },
+          "replayed": {
+            "default": false,
+            "title": "Replayed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "api_version",
+          "data",
+          "replayed"
+        ],
+        "title": "AppSuccess[ApprovalDetail]",
+        "type": "object"
+      },
+      "AppSuccess_ApprovalList_": {
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "ghost-app-v1",
+            "default": "ghost-app-v1",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ApprovalList"
+          },
+          "replayed": {
+            "default": false,
+            "title": "Replayed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "api_version",
+          "data",
+          "replayed"
+        ],
+        "title": "AppSuccess[ApprovalList]",
+        "type": "object"
+      },
+      "AppSuccess_ApprovalMutation_": {
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "ghost-app-v1",
+            "default": "ghost-app-v1",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ApprovalMutation"
+          },
+          "replayed": {
+            "default": false,
+            "title": "Replayed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "api_version",
+          "data",
+          "replayed"
+        ],
+        "title": "AppSuccess[ApprovalMutation]",
+        "type": "object"
+      },
+      "AppSuccess_CancelResult_": {
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "ghost-app-v1",
+            "default": "ghost-app-v1",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CancelResult"
+          },
+          "replayed": {
+            "default": false,
+            "title": "Replayed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "api_version",
+          "data",
+          "replayed"
+        ],
+        "title": "AppSuccess[CancelResult]",
+        "type": "object"
+      },
+      "AppSuccess_OperationList_": {
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "ghost-app-v1",
+            "default": "ghost-app-v1",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/OperationList"
+          },
+          "replayed": {
+            "default": false,
+            "title": "Replayed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "api_version",
+          "data",
+          "replayed"
+        ],
+        "title": "AppSuccess[OperationList]",
+        "type": "object"
+      },
+      "AppSuccess_OperationView_": {
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "ghost-app-v1",
+            "default": "ghost-app-v1",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/OperationView"
+          },
+          "replayed": {
+            "default": false,
+            "title": "Replayed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "api_version",
+          "data",
+          "replayed"
+        ],
+        "title": "AppSuccess[OperationView]",
+        "type": "object"
+      },
+      "AppSuccess_PlanningView_": {
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "ghost-app-v1",
+            "default": "ghost-app-v1",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PlanningView"
+          },
+          "replayed": {
+            "default": false,
+            "title": "Replayed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "api_version",
+          "data",
+          "replayed"
+        ],
+        "title": "AppSuccess[PlanningView]",
+        "type": "object"
+      },
+      "AppSuccess_TaskDetail_": {
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "ghost-app-v1",
+            "default": "ghost-app-v1",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/TaskDetail"
+          },
+          "replayed": {
+            "default": false,
+            "title": "Replayed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "api_version",
+          "data",
+          "replayed"
+        ],
+        "title": "AppSuccess[TaskDetail]",
+        "type": "object"
+      },
+      "AppSuccess_TaskPage_": {
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "ghost-app-v1",
+            "default": "ghost-app-v1",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/TaskPage"
+          },
+          "replayed": {
+            "default": false,
+            "title": "Replayed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "api_version",
+          "data",
+          "replayed"
+        ],
+        "title": "AppSuccess[TaskPage]",
+        "type": "object"
+      },
+      "AppSuccess_WorkflowView_": {
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "ghost-app-v1",
+            "default": "ghost-app-v1",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/WorkflowView"
+          },
+          "replayed": {
+            "default": false,
+            "title": "Replayed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "api_version",
+          "data",
+          "replayed"
+        ],
+        "title": "AppSuccess[WorkflowView]",
+        "type": "object"
+      },
+      "ApprovalDecision": {
+        "additionalProperties": false,
+        "properties": {
+          "resolution": {
+            "enum": [
+              "APPROVE",
+              "REJECT"
+            ],
+            "title": "Resolution",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resolution"
+        ],
+        "title": "ApprovalDecision",
+        "type": "object"
+      },
+      "ApprovalDetail": {
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "enum": [
+              "files.list_authorized",
+              "files.read",
+              "email.draft",
+              "email.send",
+              "tasks.list"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "approval_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Approval Ref",
+            "type": "string"
+          },
+          "arguments": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FileArguments"
+              },
+              {
+                "$ref": "#/components/schemas/EmailArguments"
+              }
+            ],
+            "title": "Arguments"
+          },
+          "binding_digest": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Binding Digest",
+            "type": "string"
+          },
+          "consumed": {
+            "title": "Consumed",
+            "type": "boolean"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "in_flight": {
+            "title": "In Flight",
+            "type": "boolean"
+          },
+          "operation_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Operation Ref",
+            "type": "string"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          },
+          "purpose": {
+            "enum": [
+              "summarize_document",
+              "prepare_email",
+              "summarize_and_prepare_email",
+              "morning_brief",
+              "answer_question"
+            ],
+            "title": "Purpose",
+            "type": "string"
+          },
+          "request_id": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "resource_versions": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceVersion"
+            },
+            "maxItems": 1,
+            "title": "Resource Versions",
+            "type": "array"
+          },
+          "state": {
+            "enum": [
+              "PENDING",
+              "APPROVED",
+              "REJECTED",
+              "EXPIRED",
+              "REVOKED"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "task_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+            "title": "Task Ref",
+            "type": "string"
+          }
+        },
+        "required": [
+          "approval_ref",
+          "task_ref",
+          "operation_ref",
+          "request_id",
+          "state",
+          "expires_at",
+          "action",
+          "purpose",
+          "arguments",
+          "resource_versions",
+          "binding_digest",
+          "consumed",
+          "in_flight",
+          "provenance"
+        ],
+        "title": "ApprovalDetail",
+        "type": "object"
+      },
+      "ApprovalList": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ApprovalSummary"
+            },
+            "maxItems": 5,
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "ApprovalList",
+        "type": "object"
+      },
+      "ApprovalMutation": {
+        "additionalProperties": false,
+        "properties": {
+          "approval": {
+            "$ref": "#/components/schemas/ApprovalSummary"
+          },
+          "in_flight": {
+            "title": "In Flight",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "approval",
+          "in_flight"
+        ],
+        "title": "ApprovalMutation",
+        "type": "object"
+      },
+      "ApprovalSummary": {
+        "additionalProperties": false,
+        "properties": {
+          "approval_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Approval Ref",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "operation_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Operation Ref",
+            "type": "string"
+          },
+          "request_id": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "PENDING",
+              "APPROVED",
+              "REJECTED",
+              "EXPIRED",
+              "REVOKED"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "task_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+            "title": "Task Ref",
+            "type": "string"
+          }
+        },
+        "required": [
+          "approval_ref",
+          "task_ref",
+          "operation_ref",
+          "request_id",
+          "state",
+          "expires_at"
+        ],
+        "title": "ApprovalSummary",
+        "type": "object"
+      },
+      "CancelResult": {
+        "additionalProperties": false,
+        "properties": {
+          "in_flight": {
+            "title": "In Flight",
+            "type": "boolean"
+          },
+          "task": {
+            "$ref": "#/components/schemas/TaskSummary"
+          }
+        },
+        "required": [
+          "task",
+          "in_flight"
+        ],
+        "title": "CancelResult",
+        "type": "object"
+      },
+      "DocumentMetadata": {
+        "additionalProperties": false,
+        "properties": {
+          "classification": {
+            "enum": [
+              "PRIVATE_ORIGINAL",
+              "SHAREABLE"
+            ],
+            "title": "Classification",
+            "type": "string"
+          },
+          "display_name": {
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Display Name",
+            "type": "string"
+          },
+          "resource_id": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Resource Id",
+            "type": "string"
+          },
+          "resource_type": {
+            "const": "SYNTHETIC_TEXT",
+            "default": "SYNTHETIC_TEXT",
+            "title": "Resource Type",
+            "type": "string"
+          },
+          "synthetic": {
+            "const": true,
+            "default": true,
+            "title": "Synthetic",
+            "type": "boolean"
+          },
+          "version_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Version Ref",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id",
+          "version_ref",
+          "display_name",
+          "classification",
+          "resource_type",
+          "synthetic"
+        ],
+        "title": "DocumentMetadata",
+        "type": "object"
+      },
+      "EmailArguments": {
+        "additionalProperties": false,
+        "properties": {
+          "attachment_resource_ids": {
+            "default": [],
+            "items": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+              "type": "string"
+            },
+            "maxItems": 20,
+            "title": "Attachment Resource Ids",
+            "type": "array"
+          },
+          "body": {
+            "maxLength": 20000,
+            "minLength": 1,
+            "title": "Body",
+            "type": "string"
+          },
+          "recipient": {
+            "maxLength": 254,
+            "minLength": 1,
+            "title": "Recipient",
+            "type": "string"
+          },
+          "subject": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Subject",
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient",
+          "subject",
+          "body"
+        ],
+        "title": "EmailArguments",
+        "type": "object"
+      },
+      "FileArguments": {
+        "additionalProperties": false,
+        "properties": {
+          "resource_id": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Resource Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id"
+        ],
+        "title": "FileArguments",
+        "type": "object"
+      },
+      "HealthResponse": {
+        "properties": {
+          "database": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Database"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "HealthResponse",
+        "type": "object"
+      },
+      "IdentityModel": {
+        "additionalProperties": false,
+        "properties": {},
+        "title": "IdentityModel",
+        "type": "object"
+      },
+      "LoginRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "pairing_code": {
+            "format": "password",
+            "maxLength": 43,
+            "minLength": 43,
+            "pattern": "^[A-Za-z0-9_-]{43}$",
+            "title": "Pairing Code",
+            "type": "string",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "pairing_code"
+        ],
+        "title": "LoginRequest",
+        "type": "object"
+      },
+      "OperationList": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/OperationView"
+            },
+            "maxItems": 20,
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "OperationList",
+        "type": "object"
+      },
+      "OperationView": {
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "enum": [
+              "files.list_authorized",
+              "files.read",
+              "email.draft",
+              "email.send",
+              "tasks.list"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "approval_ref": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approval Ref"
+          },
+          "approval_state": {
+            "anyOf": [
+              {
+                "enum": [
+                  "PENDING",
+                  "APPROVED",
+                  "REJECTED",
+                  "EXPIRED",
+                  "REVOKED"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approval State"
+          },
+          "attempt_ref": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attempt Ref"
+          },
+          "audit_event_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Audit Event Ref",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "decision": {
+            "enum": [
+              "ALLOW",
+              "DENY",
+              "APPROVAL_REQUIRED"
+            ],
+            "title": "Decision",
+            "type": "string"
+          },
+          "execution_status": {
+            "enum": [
+              "NOT_EXECUTED",
+              "SUCCEEDED",
+              "FAILED",
+              "UNKNOWN"
+            ],
+            "title": "Execution Status",
+            "type": "string"
+          },
+          "operation_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Operation Ref",
+            "type": "string"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          },
+          "reason_code": {
+            "enum": [
+              "EXECUTION_NOT_STARTED",
+              "EXECUTION_SUCCEEDED",
+              "TOOL_FAILED_NO_EFFECT",
+              "APPROVAL_UNAVAILABLE",
+              "AUTH_INVALID",
+              "TASK_SCOPE_MISMATCH",
+              "ACTION_DISABLED",
+              "TASK_NOT_ACTIVE",
+              "PURPOSE_MISMATCH",
+              "RESOURCE_NOT_AUTHORIZED",
+              "RESOURCE_VERSION_CHANGED",
+              "RECIPIENT_NOT_AUTHORIZED",
+              "CONSENT_AMBIGUOUS",
+              "CONSENT_EXPIRED",
+              "CONSENT_REVOKED",
+              "EXECUTION_UNCONFIRMED",
+              "CONSENT_REVIEW_REQUIRED",
+              "APPROVAL_REJECTED",
+              "APPROVAL_EXPIRED",
+              "APPROVAL_REVOKED",
+              "EMAIL_CONTENT_NOT_AUTHORIZED",
+              "SEND_SLOT_CLAIMED",
+              "SEND_RECONCILIATION_REQUIRED"
+            ],
+            "title": "Reason Code",
+            "type": "string"
+          },
+          "reconciliation_required": {
+            "title": "Reconciliation Required",
+            "type": "boolean"
+          },
+          "request_id": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "revision": {
+            "minimum": 0.0,
+            "title": "Revision",
+            "type": "integer"
+          },
+          "state": {
+            "enum": [
+              "ADMITTED",
+              "PENDING_APPROVAL",
+              "READY",
+              "DENIED",
+              "DISPATCHING",
+              "SUCCEEDED",
+              "FAILED",
+              "UNKNOWN"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "task_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+            "title": "Task Ref",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "operation_ref",
+          "task_ref",
+          "request_id",
+          "action",
+          "state",
+          "decision",
+          "execution_status",
+          "reason_code",
+          "approval_ref",
+          "approval_state",
+          "attempt_ref",
+          "audit_event_ref",
+          "revision",
+          "created_at",
+          "updated_at",
+          "reconciliation_required",
+          "provenance"
+        ],
+        "title": "OperationView",
+        "type": "object"
+      },
+      "OwnerDisplay": {
+        "additionalProperties": false,
+        "properties": {
+          "display_name": {
+            "const": "Local demo owner",
+            "default": "Local demo owner",
+            "title": "Display Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "display_name"
+        ],
+        "title": "OwnerDisplay",
+        "type": "object"
+      },
+      "OwnerSession": {
+        "additionalProperties": false,
+        "properties": {
+          "absolute_expires_at": {
+            "format": "date-time",
+            "title": "Absolute Expires At",
+            "type": "string"
+          },
+          "authenticated": {
+            "const": true,
+            "default": true,
+            "title": "Authenticated",
+            "type": "boolean"
+          },
+          "csrf_token": {
+            "pattern": "^[A-Za-z0-9_-]{43}$",
+            "title": "Csrf Token",
+            "type": "string"
+          },
+          "idle_expires_at": {
+            "format": "date-time",
+            "title": "Idle Expires At",
+            "type": "string"
+          },
+          "mode": {
+            "const": "LOCAL_DEMO",
+            "default": "LOCAL_DEMO",
+            "title": "Mode",
+            "type": "string"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/OwnerDisplay"
+          }
+        },
+        "required": [
+          "authenticated",
+          "mode",
+          "csrf_token",
+          "owner",
+          "idle_expires_at",
+          "absolute_expires_at"
+        ],
+        "title": "OwnerSession",
+        "type": "object"
+      },
+      "PlanningStart": {
+        "additionalProperties": false,
+        "properties": {
+          "user_request": {
+            "maxLength": 4000,
+            "minLength": 1,
+            "title": "User Request",
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_request"
+        ],
+        "title": "PlanningStart",
+        "type": "object"
+      },
+      "PlanningView": {
+        "additionalProperties": false,
+        "properties": {
+          "approval_ref": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approval Ref"
+          },
+          "authorization_decision": {
+            "anyOf": [
+              {
+                "enum": [
+                  "ALLOW",
+                  "DENY",
+                  "APPROVAL_REQUIRED"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Authorization Decision"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "enum": [
+                  "PLANNING_FAILED",
+                  "PLAN_OUT_OF_SCOPE",
+                  "AUTHORIZATION_UNAVAILABLE",
+                  "CHECKPOINT_UNAVAILABLE",
+                  "HOST_UNAVAILABLE",
+                  "COMMAND_TIMEOUT",
+                  "COMMAND_UNCERTAIN"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "finished_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finished At"
+          },
+          "intent": {
+            "anyOf": [
+              {
+                "enum": [
+                  "summarize_document",
+                  "prepare_email",
+                  "summarize_and_prepare_email",
+                  "morning_brief",
+                  "answer_question"
+                ],
+                "type": "string"
+              },
+              {
+                "enum": [
+                  "clarify_request",
+                  "unsupported_operation"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Intent"
+          },
+          "operation_ref": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Operation Ref"
+          },
+          "outcome": {
+            "anyOf": [
+              {
+                "enum": [
+                  "PLAN_READY",
+                  "CLARIFICATION_REQUIRED",
+                  "UNSUPPORTED_OPERATION",
+                  "FAILED"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outcome"
+          },
+          "planning_ref": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Planning Ref"
+          },
+          "proposed_actions": {
+            "default": [],
+            "items": {
+              "enum": [
+                "files.list_authorized",
+                "files.read",
+                "email.draft",
+                "email.send",
+                "tasks.list"
+              ],
+              "type": "string"
+            },
+            "maxItems": 10,
+            "title": "Proposed Actions",
+            "type": "array"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "enum": [
+                  "EXECUTION_NOT_STARTED",
+                  "EXECUTION_SUCCEEDED",
+                  "TOOL_FAILED_NO_EFFECT",
+                  "APPROVAL_UNAVAILABLE",
+                  "AUTH_INVALID",
+                  "TASK_SCOPE_MISMATCH",
+                  "ACTION_DISABLED",
+                  "TASK_NOT_ACTIVE",
+                  "PURPOSE_MISMATCH",
+                  "RESOURCE_NOT_AUTHORIZED",
+                  "RESOURCE_VERSION_CHANGED",
+                  "RECIPIENT_NOT_AUTHORIZED",
+                  "CONSENT_AMBIGUOUS",
+                  "CONSENT_EXPIRED",
+                  "CONSENT_REVOKED",
+                  "EXECUTION_UNCONFIRMED",
+                  "CONSENT_REVIEW_REQUIRED",
+                  "APPROVAL_REJECTED",
+                  "APPROVAL_EXPIRED",
+                  "APPROVAL_REVOKED",
+                  "EMAIL_CONTENT_NOT_AUTHORIZED",
+                  "SEND_SLOT_CLAIMED",
+                  "SEND_RECONCILIATION_REQUIRED"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason Code"
+          },
+          "request_id": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Request Id"
+          },
+          "started_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Started At"
+          },
+          "state": {
+            "default": "NOT_STARTED",
+            "enum": [
+              "NOT_STARTED",
+              "RUNNING",
+              "FINISHED",
+              "FAILED",
+              "UNCERTAIN"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "task_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+            "title": "Task Ref",
+            "type": "string"
+          }
+        },
+        "required": [
+          "task_ref",
+          "planning_ref",
+          "state",
+          "outcome",
+          "intent",
+          "proposed_actions",
+          "authorization_decision",
+          "reason_code",
+          "request_id",
+          "operation_ref",
+          "approval_ref",
+          "error_code",
+          "started_at",
+          "finished_at",
+          "provenance"
+        ],
+        "title": "PlanningView",
+        "type": "object"
+      },
+      "Provenance": {
+        "additionalProperties": false,
+        "properties": {
+          "effect": {
+            "default": "NONE",
+            "enum": [
+              "NONE",
+              "SIMULATED",
+              "NO_MESSAGE_SUBMISSION",
+              "FAKE_SMTP_ONLY",
+              "UNCONFIRMED"
+            ],
+            "title": "Effect",
+            "type": "string"
+          },
+          "environment": {
+            "const": "OFFLINE_DEMO",
+            "default": "OFFLINE_DEMO",
+            "title": "Environment",
+            "type": "string"
+          },
+          "evidence": {
+            "default": "CONFIGURED",
+            "enum": [
+              "CONFIGURED",
+              "OBSERVED",
+              "UNATTESTED"
+            ],
+            "title": "Evidence",
+            "type": "string"
+          },
+          "execution_mode": {
+            "anyOf": [
+              {
+                "enum": [
+                  "SIMULATED",
+                  "EMAIL_DRAFT",
+                  "MAILPIT_SEND"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Execution Mode"
+          },
+          "planning_source": {
+            "default": "NOT_RUN",
+            "enum": [
+              "NOT_RUN",
+              "MOCK_MODEL",
+              "UNATTESTED"
+            ],
+            "title": "Planning Source",
+            "type": "string"
+          }
+        },
+        "required": [
+          "environment",
+          "planning_source",
+          "execution_mode",
+          "effect",
+          "evidence"
+        ],
+        "title": "Provenance",
+        "type": "object"
+      },
+      "ResourceVersion": {
+        "additionalProperties": false,
+        "properties": {
+          "classification": {
+            "enum": [
+              "PRIVATE_ORIGINAL",
+              "SHAREABLE"
+            ],
+            "title": "Classification",
+            "type": "string"
+          },
+          "resource_id": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Resource Id",
+            "type": "string"
+          },
+          "version_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Version Ref",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id",
+          "version_ref",
+          "classification"
+        ],
+        "title": "ResourceVersion",
+        "type": "object"
+      },
+      "SessionSuccess": {
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "ghost-app-v1",
+            "default": "ghost-app-v1",
+            "title": "Api Version",
+            "type": "string"
+          },
+          "data": {
+            "discriminator": {
+              "mapping": {
+                "false": "#/components/schemas/AnonymousSession",
+                "true": "#/components/schemas/OwnerSession"
+              },
+              "propertyName": "authenticated"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AnonymousSession"
+              },
+              {
+                "$ref": "#/components/schemas/OwnerSession"
+              }
+            ],
+            "title": "Data"
+          },
+          "replayed": {
+            "const": false,
+            "default": false,
+            "title": "Replayed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "api_version",
+          "data",
+          "replayed"
+        ],
+        "title": "SessionSuccess",
+        "type": "object"
+      },
+      "TaskCreate": {
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "else": {
+              "properties": {
+                "resource_id": {
+                  "type": "null"
+                }
+              }
+            },
+            "if": {
+              "properties": {
+                "profile_id": {
+                  "const": "document_simulation_v1"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "resource_id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "properties": {
+          "profile_id": {
+            "enum": [
+              "document_simulation_v1",
+              "email_draft_v1",
+              "email_send_v1"
+            ],
+            "title": "Profile Id",
+            "type": "string"
+          },
+          "resource_id": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resource Id"
+          }
+        },
+        "required": [
+          "profile_id",
+          "resource_id"
+        ],
+        "title": "TaskCreate",
+        "type": "object"
+      },
+      "TaskDetail": {
+        "additionalProperties": false,
+        "properties": {
+          "allowed_action": {
+            "enum": [
+              "files.list_authorized",
+              "files.read",
+              "email.draft",
+              "email.send",
+              "tasks.list"
+            ],
+            "title": "Allowed Action",
+            "type": "string"
+          },
+          "approval_ref": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approval Ref"
+          },
+          "authority_state": {
+            "enum": [
+              "OPEN",
+              "COMPLETED",
+              "CANCELLED",
+              "EXPIRED"
+            ],
+            "title": "Authority State",
+            "type": "string"
+          },
+          "authorization_version": {
+            "minimum": 0.0,
+            "title": "Authorization Version",
+            "type": "integer"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "in_flight": {
+            "title": "In Flight",
+            "type": "boolean"
+          },
+          "operation_state": {
+            "anyOf": [
+              {
+                "enum": [
+                  "ADMITTED",
+                  "PENDING_APPROVAL",
+                  "READY",
+                  "DENIED",
+                  "DISPATCHING",
+                  "SUCCEEDED",
+                  "FAILED",
+                  "UNKNOWN"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Operation State"
+          },
+          "planning_state": {
+            "enum": [
+              "NOT_STARTED",
+              "RUNNING",
+              "FINISHED",
+              "FAILED",
+              "UNCERTAIN"
+            ],
+            "title": "Planning State",
+            "type": "string"
+          },
+          "profile_id": {
+            "enum": [
+              "document_simulation_v1",
+              "email_draft_v1",
+              "email_send_v1"
+            ],
+            "title": "Profile Id",
+            "type": "string"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          },
+          "purpose": {
+            "enum": [
+              "summarize_document",
+              "prepare_email",
+              "summarize_and_prepare_email",
+              "morning_brief",
+              "answer_question"
+            ],
+            "title": "Purpose",
+            "type": "string"
+          },
+          "reconciliation_required": {
+            "title": "Reconciliation Required",
+            "type": "boolean"
+          },
+          "resource_ids": {
+            "items": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+              "type": "string"
+            },
+            "maxItems": 1,
+            "title": "Resource Ids",
+            "type": "array"
+          },
+          "task_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+            "title": "Task Ref",
+            "type": "string"
+          },
+          "workflow_phase": {
+            "anyOf": [
+              {
+                "enum": [
+                  "PREPARING",
+                  "PAUSED",
+                  "ADMITTED",
+                  "RESUMING",
+                  "RESUMED",
+                  "DENIED"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Workflow Phase"
+          }
+        },
+        "required": [
+          "task_ref",
+          "profile_id",
+          "authority_state",
+          "created_at",
+          "expires_at",
+          "planning_state",
+          "approval_ref",
+          "workflow_phase",
+          "operation_state",
+          "provenance",
+          "purpose",
+          "resource_ids",
+          "allowed_action",
+          "authorization_version",
+          "in_flight",
+          "reconciliation_required"
+        ],
+        "title": "TaskDetail",
+        "type": "object"
+      },
+      "TaskPage": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/TaskSummary"
+            },
+            "maxItems": 50,
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "snapshot_at": {
+            "format": "date-time",
+            "title": "Snapshot At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "snapshot_at"
+        ],
+        "title": "TaskPage",
+        "type": "object"
+      },
+      "TaskSummary": {
+        "additionalProperties": false,
+        "properties": {
+          "approval_ref": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approval Ref"
+          },
+          "authority_state": {
+            "enum": [
+              "OPEN",
+              "COMPLETED",
+              "CANCELLED",
+              "EXPIRED"
+            ],
+            "title": "Authority State",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "operation_state": {
+            "anyOf": [
+              {
+                "enum": [
+                  "ADMITTED",
+                  "PENDING_APPROVAL",
+                  "READY",
+                  "DENIED",
+                  "DISPATCHING",
+                  "SUCCEEDED",
+                  "FAILED",
+                  "UNKNOWN"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Operation State"
+          },
+          "planning_state": {
+            "enum": [
+              "NOT_STARTED",
+              "RUNNING",
+              "FINISHED",
+              "FAILED",
+              "UNCERTAIN"
+            ],
+            "title": "Planning State",
+            "type": "string"
+          },
+          "profile_id": {
+            "enum": [
+              "document_simulation_v1",
+              "email_draft_v1",
+              "email_send_v1"
+            ],
+            "title": "Profile Id",
+            "type": "string"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          },
+          "task_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+            "title": "Task Ref",
+            "type": "string"
+          },
+          "workflow_phase": {
+            "anyOf": [
+              {
+                "enum": [
+                  "PREPARING",
+                  "PAUSED",
+                  "ADMITTED",
+                  "RESUMING",
+                  "RESUMED",
+                  "DENIED"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Workflow Phase"
+          }
+        },
+        "required": [
+          "task_ref",
+          "profile_id",
+          "authority_state",
+          "created_at",
+          "expires_at",
+          "planning_state",
+          "approval_ref",
+          "workflow_phase",
+          "operation_state",
+          "provenance"
+        ],
+        "title": "TaskSummary",
+        "type": "object"
+      },
+      "TimelineItem": {
+        "additionalProperties": false,
+        "properties": {
+          "approval_ref": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approval Ref"
+          },
+          "attempt_ref": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attempt Ref"
+          },
+          "decision": {
+            "anyOf": [
+              {
+                "enum": [
+                  "ALLOW",
+                  "DENY",
+                  "APPROVAL_REQUIRED"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision"
+          },
+          "event_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+            "title": "Event Ref",
+            "type": "string"
+          },
+          "execution_status": {
+            "anyOf": [
+              {
+                "enum": [
+                  "NOT_EXECUTED",
+                  "SUCCEEDED",
+                  "FAILED",
+                  "UNKNOWN"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Execution Status"
+          },
+          "kind": {
+            "enum": [
+              "AUTHORIZATION",
+              "APPROVAL_TRANSITION",
+              "APPROVAL_VIEWED",
+              "WORKFLOW_TRANSITION",
+              "EXECUTION_ADMISSION",
+              "EXECUTION_OUTCOME"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "operation_ref": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Operation Ref"
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "enum": [
+                  "EXECUTION_NOT_STARTED",
+                  "EXECUTION_SUCCEEDED",
+                  "TOOL_FAILED_NO_EFFECT",
+                  "APPROVAL_UNAVAILABLE",
+                  "AUTH_INVALID",
+                  "TASK_SCOPE_MISMATCH",
+                  "ACTION_DISABLED",
+                  "TASK_NOT_ACTIVE",
+                  "PURPOSE_MISMATCH",
+                  "RESOURCE_NOT_AUTHORIZED",
+                  "RESOURCE_VERSION_CHANGED",
+                  "RECIPIENT_NOT_AUTHORIZED",
+                  "CONSENT_AMBIGUOUS",
+                  "CONSENT_EXPIRED",
+                  "CONSENT_REVOKED",
+                  "EXECUTION_UNCONFIRMED",
+                  "CONSENT_REVIEW_REQUIRED",
+                  "APPROVAL_REJECTED",
+                  "APPROVAL_EXPIRED",
+                  "APPROVAL_REVOKED",
+                  "EMAIL_CONTENT_NOT_AUTHORIZED",
+                  "SEND_SLOT_CLAIMED",
+                  "SEND_RECONCILIATION_REQUIRED"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason Code"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "enum": [
+                  "PENDING",
+                  "APPROVED",
+                  "REJECTED",
+                  "EXPIRED",
+                  "REVOKED"
+                ],
+                "type": "string"
+              },
+              {
+                "enum": [
+                  "PREPARING",
+                  "PAUSED",
+                  "ADMITTED",
+                  "RESUMING",
+                  "RESUMED",
+                  "DENIED"
+                ],
+                "type": "string"
+              },
+              {
+                "enum": [
+                  "ADMITTED",
+                  "PENDING_APPROVAL",
+                  "READY",
+                  "DENIED",
+                  "DISPATCHING",
+                  "SUCCEEDED",
+                  "FAILED",
+                  "UNKNOWN"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "State"
+          },
+          "task_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+            "title": "Task Ref",
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "title": "Timestamp",
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_ref",
+          "timestamp",
+          "kind",
+          "task_ref",
+          "operation_ref",
+          "attempt_ref",
+          "approval_ref",
+          "state",
+          "decision",
+          "execution_status",
+          "reason_code"
+        ],
+        "title": "TimelineItem",
+        "type": "object"
+      },
+      "WorkflowView": {
+        "additionalProperties": false,
+        "properties": {
+          "approval_ref": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approval Ref"
+          },
+          "authorization_version": {
+            "minimum": 0.0,
+            "title": "Authorization Version",
+            "type": "integer"
+          },
+          "binding_ref": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Binding Ref"
+          },
+          "continuation_available": {
+            "title": "Continuation Available",
+            "type": "boolean"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "operation_ref": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Operation Ref"
+          },
+          "phase": {
+            "anyOf": [
+              {
+                "enum": [
+                  "PREPARING",
+                  "PAUSED",
+                  "ADMITTED",
+                  "RESUMING",
+                  "RESUMED",
+                  "DENIED"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phase"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          },
+          "reconciliation_required": {
+            "title": "Reconciliation Required",
+            "type": "boolean"
+          },
+          "task_ref": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+            "title": "Task Ref",
+            "type": "string"
+          }
+        },
+        "required": [
+          "task_ref",
+          "binding_ref",
+          "operation_ref",
+          "approval_ref",
+          "phase",
+          "authorization_version",
+          "expires_at",
+          "continuation_available",
+          "reconciliation_required",
+          "provenance"
+        ],
+        "title": "WorkflowView",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "AppSession": {
+        "description": "Local-demo opaque preauth/current session; not an owner bearer",
+        "in": "cookie",
+        "name": "ghost_demo_session",
+        "type": "apiKey"
+      },
+      "CsrfHeader": {
+        "description": "Required together with the cookie on every POST, including login/logout. Exact Origin/Host checks also apply; cookie security alone is insufficient.",
+        "in": "header",
+        "name": "X-Ghost-CSRF",
+        "type": "apiKey"
+      }
+    }
+  },
+  "info": {
+    "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content.",
+    "title": "Ghost browser application API",
+    "version": "ghost-app-v1"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/app/v1/approvals": {
+      "get": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "approvals_api_app_v1_approvals_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "task_ref",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_ApprovalList_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": []
+          }
+        ],
+        "summary": "Approvals",
+        "tags": [
+          "application-interfaces"
+        ]
+      }
+    },
+    "/api/app/v1/approvals/{approval_ref}": {
+      "get": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "approval_detail_api_app_v1_approvals__approval_ref__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "approval_ref",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+              "title": "Approval Ref",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_ApprovalDetail_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": []
+          }
+        ],
+        "summary": "Approval Detail",
+        "tags": [
+          "application-interfaces"
+        ]
+      }
+    },
+    "/api/app/v1/approvals/{approval_ref}/decision": {
+      "post": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "decision_api_app_v1_approvals__approval_ref__decision_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "approval_ref",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+              "title": "Approval Ref",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Exact configured origin; no forwarded-header trust.",
+            "in": "header",
+            "name": "Origin",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApprovalDecision"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_ApprovalMutation_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": [],
+            "CsrfHeader": []
+          }
+        ],
+        "summary": "Decision",
+        "tags": [
+          "application-interfaces"
+        ]
+      }
+    },
+    "/api/app/v1/approvals/{approval_ref}/revoke": {
+      "post": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "revoke_api_app_v1_approvals__approval_ref__revoke_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "approval_ref",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+              "title": "Approval Ref",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Exact configured origin; no forwarded-header trust.",
+            "in": "header",
+            "name": "Origin",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_ApprovalMutation_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": [],
+            "CsrfHeader": []
+          }
+        ],
+        "summary": "Revoke",
+        "tags": [
+          "application-interfaces"
+        ]
+      }
+    },
+    "/api/app/v1/documents": {
+      "get": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "documents_api_app_v1_documents_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "default": 20,
+              "maximum": 50,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "schema": {
+              "maxLength": 2048,
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_AppPage_DocumentMetadata__"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": []
+          }
+        ],
+        "summary": "Documents",
+        "tags": [
+          "application-interfaces"
+        ]
+      }
+    },
+    "/api/app/v1/session": {
+      "get": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "session_status_api_app_v1_session_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionSuccess"
+                }
+              }
+            },
+            "description": "Successful Response",
+            "headers": {
+              "Set-Cookie": {
+                "description": "HttpOnly; SameSite=Strict; Path=/; HTTPS Secure",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [],
+        "summary": "Session Status",
+        "tags": [
+          "local-demo-authentication"
+        ]
+      }
+    },
+    "/api/app/v1/session/login": {
+      "post": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "login_api_app_v1_session_login_post",
+        "parameters": [
+          {
+            "description": "Exact configured origin; no forwarded-header trust.",
+            "in": "header",
+            "name": "Origin",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionSuccess"
+                }
+              }
+            },
+            "description": "Successful Response",
+            "headers": {
+              "Set-Cookie": {
+                "description": "HttpOnly; SameSite=Strict; Path=/; HTTPS Secure",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "AppSession": [],
+            "CsrfHeader": []
+          }
+        ],
+        "summary": "Login",
+        "tags": [
+          "local-demo-authentication"
+        ]
+      }
+    },
+    "/api/app/v1/session/logout": {
+      "post": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "logout_api_app_v1_session_logout_post",
+        "parameters": [
+          {
+            "description": "Exact configured origin; no forwarded-header trust.",
+            "in": "header",
+            "name": "Origin",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response",
+            "headers": {
+              "Set-Cookie": {
+                "description": "HttpOnly; SameSite=Strict; Path=/; HTTPS Secure",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "AppSession": [],
+            "CsrfHeader": []
+          }
+        ],
+        "summary": "Logout",
+        "tags": [
+          "local-demo-authentication"
+        ]
+      }
+    },
+    "/api/app/v1/tasks": {
+      "get": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "listing_api_app_v1_tasks_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 50,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "maxLength": 2048,
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_TaskPage_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": []
+          }
+        ],
+        "summary": "Listing",
+        "tags": [
+          "application-tasks"
+        ]
+      },
+      "post": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "create_api_app_v1_tasks_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Exact configured origin; no forwarded-header trust.",
+            "in": "header",
+            "name": "Origin",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_TaskDetail_"
+                }
+              }
+            },
+            "description": "Idempotent replay; current task"
+          },
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_TaskDetail_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": [],
+            "CsrfHeader": []
+          }
+        ],
+        "summary": "Create",
+        "tags": [
+          "application-tasks"
+        ]
+      }
+    },
+    "/api/app/v1/tasks/{task_ref}": {
+      "get": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "detail_api_app_v1_tasks__task_ref__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_ref",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+              "title": "Task Ref",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_TaskDetail_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": []
+          }
+        ],
+        "summary": "Detail",
+        "tags": [
+          "application-tasks"
+        ]
+      }
+    },
+    "/api/app/v1/tasks/{task_ref}/cancel": {
+      "post": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "cancel_api_app_v1_tasks__task_ref__cancel_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_ref",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+              "title": "Task Ref",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Exact configured origin; no forwarded-header trust.",
+            "in": "header",
+            "name": "Origin",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_CancelResult_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": [],
+            "CsrfHeader": []
+          }
+        ],
+        "summary": "Cancel",
+        "tags": [
+          "application-interfaces"
+        ]
+      }
+    },
+    "/api/app/v1/tasks/{task_ref}/operations": {
+      "get": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "operations_api_app_v1_tasks__task_ref__operations_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_ref",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+              "title": "Task Ref",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_OperationList_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": []
+          }
+        ],
+        "summary": "Operations",
+        "tags": [
+          "application-interfaces"
+        ]
+      }
+    },
+    "/api/app/v1/tasks/{task_ref}/operations/{operation_ref}": {
+      "get": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "operation_api_app_v1_tasks__task_ref__operations__operation_ref__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_ref",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+              "title": "Task Ref",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "operation_ref",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$",
+              "title": "Operation Ref",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_OperationView_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": []
+          }
+        ],
+        "summary": "Operation",
+        "tags": [
+          "application-interfaces"
+        ]
+      }
+    },
+    "/api/app/v1/tasks/{task_ref}/planning": {
+      "get": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "planning_status_api_app_v1_tasks__task_ref__planning_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_ref",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+              "title": "Task Ref",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_PlanningView_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": []
+          }
+        ],
+        "summary": "Planning Status",
+        "tags": [
+          "application-tasks"
+        ]
+      },
+      "post": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "planning_api_app_v1_tasks__task_ref__planning_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_ref",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+              "title": "Task Ref",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Exact configured origin; no forwarded-header trust.",
+            "in": "header",
+            "name": "Origin",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanningStart"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_PlanningView_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": [],
+            "CsrfHeader": []
+          }
+        ],
+        "summary": "Planning",
+        "tags": [
+          "application-tasks"
+        ]
+      }
+    },
+    "/api/app/v1/tasks/{task_ref}/timeline": {
+      "get": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "timeline_api_app_v1_tasks__task_ref__timeline_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_ref",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+              "title": "Task Ref",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "default": 20,
+              "maximum": 50,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "schema": {
+              "maxLength": 2048,
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_AppPage_TimelineItem__"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": []
+          }
+        ],
+        "summary": "Timeline",
+        "tags": [
+          "application-interfaces"
+        ]
+      }
+    },
+    "/api/app/v1/tasks/{task_ref}/workflow": {
+      "get": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "workflow_api_app_v1_tasks__task_ref__workflow_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_ref",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+              "title": "Task Ref",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_WorkflowView_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": []
+          }
+        ],
+        "summary": "Workflow",
+        "tags": [
+          "application-interfaces"
+        ]
+      }
+    },
+    "/api/app/v1/tasks/{task_ref}/workflow/continue": {
+      "post": {
+        "description": "LOCAL_DEMO is disabled by default and supports one owner/process on literal loopback only. Owner identity is server-derived. No browser bearer, owner, role or proxy headers. All reads validate Host/Origin/peer; POST requires the exact configured Origin and X-Ghost-CSRF bound to the HttpOnly SameSite=Strict preauth/session cookie. HTTPS uses __Host-ghost_session with Secure; explicit HTTP loopback uses ghost_demo_session without Secure. Cookies have Path=/ and no Domain. Expired/revoked sessions cannot access private results. Responses are no-store. Approval and metadata continuation never dispatch; UNKNOWN requires reconciliation, never an automatic resend. Catalog metadata does not authorize protected content. ",
+        "operationId": "continuation_api_app_v1_tasks__task_ref__workflow_continue_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_ref",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+              "title": "Task Ref",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Exact configured origin; no forwarded-header trust.",
+            "in": "header",
+            "name": "Origin",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentityModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppSuccess_WorkflowView_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Delay in seconds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppFailure"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          }
+        },
+        "security": [
+          {
+            "AppSession": [],
+            "CsrfHeader": []
+          }
+        ],
+        "summary": "Continuation",
+        "tags": [
+          "application-interfaces"
+        ]
+      }
+    },
+    "/health": {
+      "get": {
+        "description": "Liveness only; no database/model/sandbox readiness claim.",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [],
+        "summary": "Check API liveness",
+        "tags": [
+          "health"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+nvidia backend.zip
+*.zip
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/
+*.pyc
+*.pyo
+**/.env
+**/.env.*
+!**/.env.example
+credentials/
+credentials.*
+secrets/
+secrets.*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+private_key*
+
+# Local runtime state and coverage are never source fixtures.
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+.coverage
+.coverage.*
+htmlcov/
+coverage/

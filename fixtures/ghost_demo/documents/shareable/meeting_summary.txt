@@ -1,0 +1,13 @@
+SYNTHETIC — SHAREABLE MEETING NOTES
+Resource ID: doc_meeting_oct
+Project: Aurora Campus Companion
+Meeting date: 2026-10-10
+Attendees: Maya Rao, Ishan Gupta, Leah Torres (all fictional)
+Decisions:
+- Maya prepares the weekly project summary.
+- Ishan tests search relevance.
+- Leah updates the landing page visual design.
+Action items:
+- Project summary due 2026-10-14 17:00 UTC.
+- Search report due 2026-10-15 15:00 UTC.
+No sensitive personal or financial documents were discussed.

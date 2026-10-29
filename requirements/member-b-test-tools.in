@@ -1,0 +1,4 @@
+# Imported by backend/tests/run_offline_suite.py to block every HTTP transport.
+# Test-only additions to the existing pyproject.toml dependencies and dev extra.
+requests>=2,<3
+httpx2

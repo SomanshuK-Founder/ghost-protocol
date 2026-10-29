@@ -1,0 +1,25 @@
+{
+  "tasks": [
+    {
+      "task_ref": "task_project_summary",
+      "owner_ref": "usr_maya",
+      "title": "Summarize and email Aurora weekly status",
+      "due_at": "2026-10-14T17:00:00Z",
+      "status": "OPEN"
+    },
+    {
+      "task_ref": "task_morning_brief",
+      "owner_ref": "usr_maya",
+      "title": "Morning brief",
+      "due_at": "2026-10-13T08:00:00Z",
+      "status": "OPEN"
+    },
+    {
+      "task_ref": "task_finance_review",
+      "owner_ref": "usr_maya",
+      "title": "Review private tax questions",
+      "due_at": "2026-10-20T12:00:00Z",
+      "status": "OPEN"
+    }
+  ]
+}

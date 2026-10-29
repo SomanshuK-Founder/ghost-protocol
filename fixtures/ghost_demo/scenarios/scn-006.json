@@ -1,0 +1,31 @@
+{
+  "scenario_id": "SCN-006",
+  "title": "Expired grant denies",
+  "synthetic": true,
+  "clock_utc": "2026-10-13T09:04:00Z",
+  "task_ref": "task_finance_review",
+  "untrusted_source_ref": null,
+  "request": {
+    "request_id": "req-scn-006",
+    "task_ref": "task_finance_review",
+    "action": "email.send",
+    "purpose": "approved_original_tax_transfer",
+    "arguments": {
+      "recipient": "accountant@review.example",
+      "subject": "Late re-send",
+      "body": "Requested document",
+      "attachment_resource_ids": [
+        "doc_tax_2026"
+      ]
+    },
+    "idempotency_key": "idem-scn-006"
+  },
+  "active_policy_refs": [
+    "pol_temporary_original"
+  ],
+  "expected_decision": "DENY",
+  "expected_execution_status": "NOT_EXECUTED",
+  "expected_email_count_delta": 0,
+  "why": "Time exceeds expires_at.",
+  "note": "Oracle only, not source of consent; trusted gateway must compute authorization independently."
+}

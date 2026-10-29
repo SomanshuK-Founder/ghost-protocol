@@ -1,0 +1,17 @@
+version: 1
+filesystem_policy:
+  include_workdir: false
+  read_only:
+    - /opt/ghost-probe/probe
+    - /etc/passwd
+    - /etc/group
+  read_write:
+    - /tmp/ghost-probe
+    - /dev/null
+landlock:
+  compatibility: hard_requirement
+process:
+  run_as_user: "1000"
+  run_as_group: "1000"
+network_policies: {}
+network_middlewares: {}

@@ -1,0 +1,26 @@
+{
+  "scenario_id": "SCN-011",
+  "title": "Allowed shareable document read",
+  "synthetic": true,
+  "clock_utc": "2026-10-13T09:00:00Z",
+  "task_ref": "task_project_summary",
+  "untrusted_source_ref": null,
+  "request": {
+    "request_id": "req-scn-011",
+    "task_ref": "task_project_summary",
+    "action": "files.read",
+    "purpose": "project_summary",
+    "arguments": {
+      "resource_id": "doc_project_report"
+    },
+    "idempotency_key": "idem-scn-011"
+  },
+  "active_policy_refs": [
+    "pol_read_project"
+  ],
+  "expected_decision": "ALLOW",
+  "expected_execution_status": "SUCCEEDED",
+  "expected_email_count_delta": 0,
+  "why": "Matching project read policy.",
+  "note": "Oracle only, not source of consent; trusted gateway must compute authorization independently."
+}

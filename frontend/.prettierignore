@@ -1,0 +1,5 @@
+src/lib/api/schema.d.ts
+package-lock.json
+out/
+.next/
+node_modules/

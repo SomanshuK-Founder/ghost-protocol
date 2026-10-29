@@ -1,0 +1,26 @@
+{
+  "scenario_id": "SCN-002",
+  "title": "Allowed private tax document read",
+  "synthetic": true,
+  "clock_utc": "2026-10-13T09:00:00Z",
+  "task_ref": "task_finance_review",
+  "untrusted_source_ref": null,
+  "request": {
+    "request_id": "req-scn-002",
+    "task_ref": "task_finance_review",
+    "action": "files.read",
+    "purpose": "private_tax_summary",
+    "arguments": {
+      "resource_id": "doc_tax_2026"
+    },
+    "idempotency_key": "idem-scn-002"
+  },
+  "active_policy_refs": [
+    "pol_read_tax"
+  ],
+  "expected_decision": "ALLOW",
+  "expected_execution_status": "SUCCEEDED",
+  "expected_email_count_delta": 0,
+  "why": "Permission covers the read only.",
+  "note": "Oracle only, not source of consent; trusted gateway must compute authorization independently."
+}

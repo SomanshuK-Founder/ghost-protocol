@@ -1,0 +1,12 @@
+import type { components } from "./schema";
+export type Schema = components["schemas"];
+export type Session = Schema["SessionSuccess"]["data"];
+export type Task = Schema["TaskSummary"];
+export type TaskDetail = Schema["TaskDetail"];
+export type Planning = Schema["PlanningView"];
+export type Operation = Schema["OperationView"];
+export type Workflow = Schema["WorkflowView"];
+export type Approval = Schema["ApprovalSummary"];
+export type ApprovalDetail = Schema["ApprovalDetail"];
+export type TimelineEvent = Schema["TimelineItem"];
+export type Provenance = Schema["Provenance"];
